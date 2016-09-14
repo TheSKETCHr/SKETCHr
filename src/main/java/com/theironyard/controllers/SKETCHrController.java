@@ -52,7 +52,7 @@ public class SKETCHrController {
         if (user == null) {
             user = new User(newUser.getUserName(), PasswordStorage.createHash(newUser.getPasswordHash()));
             users.save(user);
-
+            System.out.println("User added!");
             return null;
         } else {
             throw new Exception("Username already taken.");
@@ -152,7 +152,7 @@ public class SKETCHrController {
      @RequestMapping(path = "/get-comments/{id}", method = RequestMethod.GET)
      public List<Comment> getComments(@PathVariable("id") int id){
          List<Comment> comment1 = comments.findAllByDrawingId(id);
-         List<Comment> passThese = new ArrayList<>();
+         List<Comment> passThese = new ArrayList();
          for (Comment comment : comment1){
              Comment temp = new Comment(comment.getId(), comment.getComment(), comment.getUserName());
              passThese.add(temp);
